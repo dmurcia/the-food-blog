@@ -1,1 +1,29 @@
-$primary: red;
+/**
+ * COLORS
+ */
+$primary: #595C69;
+$secondary: #FFBF9D;
+$light: #FFF8F2;
+$dark: #303036;
+$gray: #9FA1AA;
+$gray-light: #EAEAEA;
+$black: #000000;
+
+/**
+ * SHADOWS
+ */
+$box-shadow: 0 0 1rem rgba($black, .10);
+
+/**
+ * BORDER RADIUS
+ */
+$border-radius: .8rem;
+$border-radius-sm: .4rem;
+
+/**
+ * FONT SIZES
+ */
+$title-f-size: 1.7rem;
+$subtitle-f-size: 1.3rem;
+$paragraph-f-size: 1rem;
+$helpers-f-size: 0.9rem;
