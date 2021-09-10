@@ -10,6 +10,8 @@ module.exports = {
       scss: {
         additionalData: `
           @import "@/scss/_variables.scss";
+          @import "bootstrap/scss/bootstrap.scss";
+          @import "@/scss/_globals.scss";
         `
       },
     },
