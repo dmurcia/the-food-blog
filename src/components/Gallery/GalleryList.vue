@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <section>
-      <header class="mb-5">
+      <header class="mb-5" v-if="showHeader">
         <h3>{{ title }}</h3>
         <a href="#" class="d-flex justify-content-start align-items-center">
           See all
@@ -9,92 +9,60 @@
         </a>
       </header>
       <div class="content-gallery d-flex flex-wrap">
-        <GalleryItem :data-list=data />
+        <GalleryItem :data-list="filterData()" />
       </div>
     </section>
+    <div class="d-flex justify-content-center">
+      <Pagination :total-pages="totalPages" />
+    </div>
   </div>
 </template>
 
 <script>
-import GalleryItem from '@/components/Gallery/GalleryItem.vue';
-
-const data = [
-  {
-    title: "Butternut Squash Soup",
-    categories: [
-      "Recipes",
-      "Soup"
-    ],
-    cookTime: "45 min",
-    portions: "6 - 8 portions",
-    imageName: "avocado-toast-1@2x.jpg"
-  },
-  {
-    title: "Berries Smoothie",
-    categories: [
-      "Recipes",
-      "drinks",
-      "Breakfast"
-    ],
-    cookTime: "15 min",
-    portions: "2 - 4 portions",
-    imageName: "cayla1-w6ftFbPCs9I-unsplash@2x.jpg"
-  },
-  {
-    title: "Butternut Squash Soup",
-    categories: [
-      "Recipes",
-      "Soup"
-    ],
-    cookTime: "45 min",
-    portions: "6 - 8 portions",
-    imageName: "berries-blackberries-close-up-cocktail-434295@2x.jpg"
-  },
-  {
-    title: "Butternut Squash Soup",
-    categories: [
-      "Recipes",
-      "Soup"
-    ],
-    cookTime: "45 min",
-    portions: "6 - 8 portions",
-    imageName: "charles-deluvio-D-vDQMTfAAU-unsplash@2x.jpg"
-  },
-  {
-    title: "Butternut Squash Soup",
-    categories: [
-      "Recipes",
-      "Soup"
-    ],
-    cookTime: "45 min",
-    portions: "6 - 8 portions",
-    imageName: "appetizer-bowl-chili-close-up-286283@2x.jpg"
-  },
-  {
-    title: "Butternut Squash Soup",
-    categories: [
-      "Recipes",
-      "Soup"
-    ],
-    cookTime: "45 min",
-    portions: "6 - 8 portions",
-    imageName: "appetizer-bowls-cream-creamy-262947@2x.jpg"
-  },
-]
+import GalleryItem from "@/components/Gallery/GalleryItem.vue";
+import Pagination from "@/components/Pagination.vue";
 
 export default {
   components: {
-    GalleryItem
+    GalleryItem,
+    Pagination,
   },
   props: {
-    title: String
+    showHeader: {
+      type: Boolean,
+      default: true,
+    },
+    title: String,
   },
   data() {
     return {
-      data
-    }
-  }
-}
+      data: [],
+      totalPages: null,
+      currentPage: 1
+    };
+  },
+  async beforeCreate() { 
+    this.data = await fetch("/data/recipes.json")
+        .then((res) => res.json())
+        .then((data) => data)
+        .catch((err) => console.error(err));
+    this.totalPages = this.getPages(this.data);
+  },
+  methods: {
+    getPages(data) {
+      return Math.ceil(data.length / this.$pagination.perPage);
+    },
+    filterData() {
+      return this.data.slice((this.currentPage - 1) * this.$pagination.perPage, this.currentPage * this.$pagination.perPage);
+    },
+  },
+  watch: {
+    $route(to) {
+      this.currentPage = to.query.page;
+      this.filterData();
+    },
+  },
+};
 </script>
 
 <style lang="scss">

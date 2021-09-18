@@ -17,7 +17,7 @@
       </section>
     </div>
     <Carousel />
-    <Gallery title="Popular Recipes" />
+    <Gallery title="Popular Recipes" :filter=6 />
     <Subscribe />
     <AboutMe />
   </div>

@@ -32,7 +32,7 @@
 
 <style lang="scss">
 .navbar {
-  box-shadow: $box-shadow;
+  box-shadow: $box-shadow-bottom;
   @include media-breakpoint-up(md) {
     padding-left: 3rem;
     padding-right: 3rem;

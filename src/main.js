@@ -8,7 +8,12 @@ import 'bootstrap/js/dist/collapse';
 
 library.add(fas);
 
-createApp(App)
+const app = createApp(App)
   .use(router)
-  .component("font-awesome-icon", FontAwesomeIcon)
-  .mount('#app')
+  .component("font-awesome-icon", FontAwesomeIcon);
+
+app.config.globalProperties.$pagination = {
+  perPage: 6
+}
+
+app.mount('#app')
