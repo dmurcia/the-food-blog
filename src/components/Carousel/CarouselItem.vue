@@ -22,11 +22,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card img {
-  transition: transform 0.2s; /* Animation */
+.card {
+  img {
+    transition: transform 0.2s; /* Animation */
 
-  &:hover {
-    transform: scale(1.02);
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 }
 </style>
