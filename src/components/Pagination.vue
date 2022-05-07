@@ -3,7 +3,7 @@
     <ul class="pagination">
       <li class="page-item" :class="currentPage === 1 ? 'disabled' : ''">
         <router-link
-          :to="{ name: 'Recipes', query: { page: 1 } }"
+          :to="{ name: pageName, query: { page: 1 } }"
           class="page-link"
           href="#"
           aria-label="Previous"
@@ -18,7 +18,7 @@
         :key="page.id"
       >
         <router-link
-          :to="{ name: 'Recipes', query: { page: page } }"
+          :to="{ name: pageName, query: { page: page } }"
           class="page-link"
           href="#"
           >{{ page }}</router-link
@@ -26,7 +26,7 @@
       </li>
       <li class="page-item" :class="currentPage == totalPages ? 'disabled' : ''">
         <router-link
-          :to="{ name: 'Recipes', query: { page: totalPages } }"
+          :to="{ name: pageName, query: { page: totalPages } }"
           class="page-link"
           href="#"
           aria-label="Next"
@@ -47,6 +47,10 @@ export default {
   },
   props: {
     totalPages: Number,
+    pageName: {
+      type: String,
+      default: 'Recipes'
+    }
   },
   mounted() {
     this.currentPage = parseInt(this.$route.query?.page, 10) || 1;

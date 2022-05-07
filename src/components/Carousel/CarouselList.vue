@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <section>
-      <div class="carousel-list d-flex gap-3 flex-nowrap">
+      <div class="carousel-list content-gallery d-flex flex-nowrap">
         <CarouselItem :data-list="data" />
       </div>
     </section>
@@ -30,6 +30,25 @@ const data = [
     description: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore (…)`,
     imageName: `round-yellow-and-red-fruits-1028598.png`,
   },
+  // {
+  //   title: "Butternut Squash Soup",
+  //   categories: [
+  //     "Recipes",
+  //     "Soup"
+  //   ],
+  //   description: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore (…)`,
+  //   imageName: "appetizer-bowls-cream-creamy-262947@2x.jpg"
+  // },
+  // {
+  //   title: "Berries Smoothie",
+  //   categories: [
+  //     "Recipes",
+  //     "drinks",
+  //     "Breakfast"
+  //   ],
+  //   description: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore (…)`,
+  //   imageName: "cayla1-w6ftFbPCs9I-unsplash@2x.jpg"
+  // }
 ];
 export default {
   components: {
