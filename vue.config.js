@@ -2,8 +2,8 @@ module.exports = {
   pages: {
     index: {
       // entry for the page
-      entry: "./src/main.js",
-    },
+      entry: './src/main.js'
+    }
   },
   css: {
     loaderOptions: {
@@ -13,7 +13,13 @@ module.exports = {
           @import "bootstrap/scss/bootstrap.scss";
           @import "@/scss/_globals.scss";
         `
-      },
-    },
+      }
+    }
   },
-};
+  configureWebpack: {
+    devtool: 'source-map'
+  },
+  devServer: {
+    disableHostCheck: true
+  }
+}

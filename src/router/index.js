@@ -1,6 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '@/views/Home.vue'
+import RecipesHome from '@/views/RecipesHome.vue'
+import RecipesPost from '@/views/RecipesPost.vue'
 
+// Insert the param as a prop
+const props = true
 const routes = [
   {
     path: '/',
@@ -18,11 +22,14 @@ const routes = [
   {
     path: '/recipes',
     name: 'Recipes',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "recipes" */ '../views/Recipes.vue')
+    component: RecipesHome
   },
+  {
+    path: '/recipes/:id',
+    name: 'Recipes Post',
+    component: RecipesPost,
+    props
+  }
 ]
 
 const router = createRouter({
