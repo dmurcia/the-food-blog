@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "docs": "jsdoc -c jsdoc.json"
+    "jsdocs": "jsdoc -c jsdoc.json",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -29,7 +30,10 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0",
     "sass": "^1.39.0",
-    "sass-loader": "^10.2.0"
+    "sass-loader": "^10.2.0",
+    "standard": "^17.0.0",
+    "vue-docgen-cli": "^4.45.0",
+    "husky": "^8.0.0"
   },
   "eslintConfig": {
     "root": true,

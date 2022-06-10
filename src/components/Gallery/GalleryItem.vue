@@ -9,10 +9,9 @@
         <img :src="`${data.image}`" alt="" />
       </div>
       <div class="card-footer">
-        <p>{{ data.id }}</p>
         <span>{{ displayCategories(data.dishTypes) }}</span>
         <h4>{{ data.title }}</h4>
-        <p>{{ data.weightWatcherSmartPoints }}</p>
+        <p>Sizes: {{ data.weightWatcherSmartPoints }}</p>
       </div>
     </div>
   </router-link>

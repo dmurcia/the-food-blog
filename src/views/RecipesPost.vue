@@ -1,28 +1,29 @@
 <template>
-  <h1>My post</h1>
+  <h1>My Recipe</h1>
 </template>
 
 <script>
-// import { ref } from 'vue';
-// import { useRoute } from 'vue-router';
+import { ref } from 'vue';
+// import { getRecipeById } from '@/api/recipes';
 
 export default {
-  setup() {
-    // const route = useRoute();
-
-    // const data = ref(null);
-    // const loading = ref(null);
-    // const error = ref(null);
-
+  props: {
+    id: String,
+  },
+  setup(props) {
+    const data = ref(null);
+    const loading = ref(true);
     
-  },
-  methods: {
-    getPost() {
-      console.log(`route`, this.$route.params.slug);
+    data.value = "s";
+    console.log(data.value, loading.value);
+    
+    const fetchData = async () => {
+    //   // data.value = await getRecipeById({ id: route.params.slug }, { information: { includeNutrition: false }});
+      console.log('id', props.id);
+    //   console.log('data', data.value);
     }
-  },
-  created() {
-    this.getPost();
+
+    fetchData();
   }
 }
 </script>

@@ -15,7 +15,7 @@
             v-if="!loading && showGallery"
           >
             <GalleryItem
-              :data-list="filterData({ data, currentPage: currentPage ?? '1' })"
+              :data-list="data"
             />
           </div>
         </Transition>
@@ -27,9 +27,9 @@
     >
       <Pagination :total-pages="getPages(data)" :page-name="pageName" />
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="content-loading d-flex justify-content-center">
       <div v-if="loading">
-        <h2>Still loading...</h2>
+        <h2>loading...</h2>
       </div>
     </div>
     <div class="d-flex justify-content-center">
@@ -43,7 +43,7 @@
 <script>
 import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
-import { getRamdomRecipes } from "@/api";
+import { getRamdomRecipes } from "@/api/recipes";
 import { parseToInt10 } from "../../utils";
 
 import GalleryItem from "@/components/Gallery/GalleryItem.vue";
@@ -57,10 +57,14 @@ export default {
       type: Boolean,
       default: true,
     },
+    items: {
+      type: Number,
+      default: 6
+    },
     title: String,
     pageName: String,
   },
-  setup() {
+  setup(props) {
     const route = useRoute();
     const data = ref({});
     const loading = ref(true);
@@ -80,9 +84,9 @@ export default {
     async function fetchData() {
       setGalleryHeight();
       loading.value = true;
-      currentPage.value = route.query.page;
+      currentPage.value = route.query.page || 1;
 
-      data.value = await getRamdomRecipes({ number: 10 }).then(({recipes}) => recipes);
+      data.value = await getRamdomRecipes({ number: props.items }).then(({recipes}) => recipes);
       loading.value = false;
       if (data?.value === null) {
         return error.value = errorMessage;
@@ -130,6 +134,9 @@ header {
     }
   }
 }
+.container {
+  position: relative;
+}
 .content-gallery {
   gap: 1.8rem;
   img {
@@ -148,5 +155,11 @@ header {
 .slide-fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
+}
+.content-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
